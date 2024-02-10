@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom'; // Import useHistory
 import './EditBook.css';
+import axios from 'axios';
+import config from '../config.json';
 
+const EditBook = () => {
+  const { bookId } = useParams();
+  const history = useHistory(); // Initialize useHistory here
 
-const EditBook = ({ book, history }) => {
-  
   const [formData, setFormData] = useState({
-    title: book.title,
-    author: book.author,
-    description: book.description,
-    price: book.price,
-    coverImage: book.coverImage,
-    stock: book.stock
+    title: '',
+    author: '',
+    description: '',
+    price: '',
+    coverImage: '',
+    stock: ''
   });
 
   const handleChange = (e) => {
@@ -22,12 +25,15 @@ const EditBook = ({ book, history }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Your logic to update the book goes here
-    console.log('Book updated:', formData);
-    // Redirect back to book details page
-    history.push(`/book-details/${book.id}`);
+    try {
+      await axios.put(`${config.backEnd_server_url}/api/books/${bookId}`, formData);
+      // Redirect back to book details page
+      history.push(`/bookDetails/${bookId}`);
+    } catch (error) {
+      console.error('Error updating book:', error);
+    }
   };
 
   return (
@@ -60,7 +66,7 @@ const EditBook = ({ book, history }) => {
         </div>
         <button type="submit">Update Book</button>
         {/* Link to navigate back to the book details page */}
-        <Link to={`/book-details/${book.id}`}>Cancel</Link>
+        <Link to={`/bookDetails/${bookId}`}>Cancel</Link>
       </form>
     </div>
   );
