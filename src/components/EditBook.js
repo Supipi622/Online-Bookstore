@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom'; // Import useHistory
-import './EditBook.css';
+import { Link, useParams, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import config from '../config.json';
 
 const EditBook = () => {
   const { bookId } = useParams();
-  const history = useHistory(); // Initialize useHistory here
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
     title: '',
@@ -30,7 +29,7 @@ const EditBook = () => {
     try {
       await axios.put(`${config.backEnd_server_url}/api/books/${bookId}`, formData);
       // Redirect back to book details page
-      history.push(`/bookDetails/${bookId}`);
+      navigate.push(`/bookDetails/${bookId}`);
     } catch (error) {
       console.error('Error updating book:', error);
     }

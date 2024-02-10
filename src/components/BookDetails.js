@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // Import useParams
-import { useHistory } from "react-router-dom"; // Import useHistory
+import { useParams, useNavigate} from "react-router-dom";
 import "./BookDetails.css";
 import config from '../config.json';
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -10,7 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 const BookDetails = () => {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
-  const history = useHistory(); // Initialize useHistory
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchBookDetails = async () => {
@@ -32,14 +31,14 @@ const BookDetails = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(`${config.backEnd_server_url}/api/books/${bookId}`);
-      history.push('/'); // Redirect to homepage after deletion
+      navigate('/'); // Redirect to homepage after deletion
     } catch (error) {
       console.error("Error deleting book:", error);
     }
   };
 
   const handleClick = () => {
-    history.push(`/editbook/${bookId}`); // Redirect to edit book page
+    navigate(`/editbook/${bookId}`); // Redirect to edit book page
   };
 
   if (!book) {
