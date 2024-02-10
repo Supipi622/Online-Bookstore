@@ -1,0 +1,80 @@
+/* BookDetails.css */
+
+.book-details-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .book-image-container {
+    flex: 0 0 auto;
+    margin-right: 40px;
+  }
+  
+  .book-image {
+    max-width: 300px;
+    height: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-info {
+    max-width: 600px;
+  }
+  
+  .book-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .book-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .book-price {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .book-stock {
+    font-size: 16px;
+  }
+
+
+  /* BookDetails.css */
+
+/* Existing styles... */
+
+.delete-button,
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #f44336; /* Red color for delete button */
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: #2196f3; /* Blue color for edit button */
+  margin-left: 10px;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #d32f2f; /* Darker red color on hover for delete button */
+}
+
+.edit-button:hover {
+  background-color: #1976d2; /* Darker blue color on hover for edit button */
+}
+
+  
